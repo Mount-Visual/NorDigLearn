@@ -1284,10 +1284,10 @@ function dbg(text) {
 // === Body ===
 
 var ASM_CONSTS = {
-  4909452: () => { Module['emscripten_get_now_backup'] = performance.now; },  
- 4909507: ($0) => { performance.now = function() { return $0; }; },  
- 4909555: ($0) => { performance.now = function() { return $0; }; },  
- 4909603: () => { performance.now = Module['emscripten_get_now_backup']; }
+  5153516: () => { Module['emscripten_get_now_backup'] = performance.now; },  
+ 5153571: ($0) => { performance.now = function() { return $0; }; },  
+ 5153619: ($0) => { performance.now = function() { return $0; }; },  
+ 5153667: () => { performance.now = Module['emscripten_get_now_backup']; }
 };
 
 
@@ -16279,7 +16279,7 @@ var ASM_CONSTS = {
 
   function _wgldebugPrint(str) 
      {
-      DebugPrint(Pointer_stringify(str));
+      DebugPrint(UTF8ToString(str));
      }
 
   function _wgldoCommit() 
@@ -16289,17 +16289,17 @@ var ASM_CONSTS = {
 
   function _wgldoGetValue(identifier,CallbackObjectName,CallbackFunctionName,key) 
      {
-      doGetValue(Pointer_stringify(identifier),Pointer_stringify(CallbackObjectName),Pointer_stringify(CallbackFunctionName),key);
+      doGetValue(UTF8ToString(identifier),UTF8ToString(CallbackObjectName),UTF8ToString(CallbackFunctionName),key);
      }
 
   function _wgldoIsScorm2004(objectname,callbackname,randomnumber) 
      {
-      doIsScorm2004(Pointer_stringify(objectname),Pointer_stringify(callbackname),randomnumber);
+      doIsScorm2004(UTF8ToString(objectname),UTF8ToString(callbackname),randomnumber);
      }
 
   function _wgldoSetValue(identifier,value,CallbackObjectName,CallbackFunctionName,key) 
      {
-      doSetValue(Pointer_stringify(identifier),Pointer_stringify(value),Pointer_stringify(CallbackObjectName),Pointer_stringify(CallbackFunctionName),key);
+      doSetValue(UTF8ToString(identifier),UTF8ToString(value),UTF8ToString(CallbackObjectName),UTF8ToString(CallbackFunctionName),key);
      }
 
   function _wgldoTerminate() 

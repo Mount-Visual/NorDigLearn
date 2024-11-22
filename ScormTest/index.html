@@ -24,6 +24,10 @@
       </div>
     </div>
     <script>
+    
+    	// Define startup scene here. Will be loaded after Bootstrapper scene and initialization.
+      var startupScene = "M5_StartScreen";
+      // ***********
       var canvas = document.querySelector("#unity-canvas");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
@@ -103,16 +107,23 @@
       }
 
       document.querySelector("#unity-loading-bar").style.display = "block";
-
+	
+	 var unityInstance = null;
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
-              }).then((unityInstance) => {
+              }).then((unity) => {
+              
+                unityInstance = unity;
+                if (startupScene != ""){
+                     console.log("Loader script loading scene [" + startupScene + "] (SendMessage)");
+                		unity.SendMessage("Loader", "LoadScene", startupScene);
+                }
                 document.querySelector("#unity-loading-bar").style.display = "none";
                 document.querySelector("#unity-fullscreen-button").onclick = () => {
-                  unityInstance.SetFullscreen(1);
+                  unity.SetFullscreen(1);
                 };
 
                 // Unloading web content from DOM so that browser GC can run can be tricky to get right.
@@ -135,7 +146,7 @@
                 document.querySelector("#unity-build-title").appendChild(quit);
                 quit.onclick = () => {
                   // Quit Unity application execution
-                  unityInstance.Quit().then(() => {
+                  unity.Quit().then(() => {
                     // Remove DOM elements from the page so GC can run
                     document.querySelector("#unity-container").remove();
                     canvas = null;
@@ -150,7 +161,16 @@
             };
 
       document.body.appendChild(script);
+      var scormscript = document.createElement("script");
+      scormscript.src = "TemplateData/scorm.js";
+      document.body.appendChild(scormscript);
 
+    </script>
+    <h1>SCORM Simulator</h1>
+    <script src="TemplateData/ScormSimulator.js"></script>
+    <script>
+        // Create an instance of ScormSimulator and initialize it
+        window.API_1484_11 = new ScormSimulator();    
     </script>
   </body>
 </html>
