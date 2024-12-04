@@ -1284,10 +1284,10 @@ function dbg(text) {
 // === Body ===
 
 var ASM_CONSTS = {
-  4901884: () => { Module['emscripten_get_now_backup'] = performance.now; },  
- 4901939: ($0) => { performance.now = function() { return $0; }; },  
- 4901987: ($0) => { performance.now = function() { return $0; }; },  
- 4902035: () => { performance.now = Module['emscripten_get_now_backup']; }
+  4913964: () => { Module['emscripten_get_now_backup'] = performance.now; },  
+ 4914019: ($0) => { performance.now = function() { return $0; }; },  
+ 4914067: ($0) => { performance.now = function() { return $0; }; },  
+ 4914115: () => { performance.now = Module['emscripten_get_now_backup']; }
 };
 
 
@@ -16277,6 +16277,36 @@ var ASM_CONSTS = {
       return _strftime(s, maxsize, format, tm); // no locale support yet
     }
 
+  function _wgldebugPrint(str) 
+     {
+      DebugPrint(UTF8ToString(str));
+     }
+
+  function _wgldoCommit() 
+     {
+      doCommit();
+     }
+
+  function _wgldoGetValue(identifier,CallbackObjectName,CallbackFunctionName,key) 
+     {
+      doGetValue(UTF8ToString(identifier),UTF8ToString(CallbackObjectName),UTF8ToString(CallbackFunctionName),key);
+     }
+
+  function _wgldoIsScorm2004(objectname,callbackname,randomnumber) 
+     {
+      doIsScorm2004(UTF8ToString(objectname),UTF8ToString(callbackname),randomnumber);
+     }
+
+  function _wgldoSetValue(identifier,value,CallbackObjectName,CallbackFunctionName,key) 
+     {
+      doSetValue(UTF8ToString(identifier),UTF8ToString(value),UTF8ToString(CallbackObjectName),UTF8ToString(CallbackFunctionName),key);
+     }
+
+  function _wgldoTerminate() 
+     {
+      doTerminate();
+     }
+
   var _wgpuFeatures = wgpuDecodeStrings('A-Ccontrol A32F-Dencil8GbcGbc-sliced-3dGetc2GaDc timeDamp-query indirect-firD-inB shader-f16 rg11b10uF-rendEbgra8unorm-Dorage F32-filtECdiBs dual-source-blending', ' texture-compression-|float|erable |st|clip-|Dance|depth').slice(1);
   function _wgpu_adapter_or_device_get_features(adapterOrDevice) {
       
@@ -18293,6 +18323,12 @@ var wasmImports = {
   "navigator_gpu_request_adapter_async": _navigator_gpu_request_adapter_async,
   "strftime": _strftime,
   "strftime_l": _strftime_l,
+  "wgldebugPrint": _wgldebugPrint,
+  "wgldoCommit": _wgldoCommit,
+  "wgldoGetValue": _wgldoGetValue,
+  "wgldoIsScorm2004": _wgldoIsScorm2004,
+  "wgldoSetValue": _wgldoSetValue,
+  "wgldoTerminate": _wgldoTerminate,
   "wgpu_adapter_or_device_get_features": _wgpu_adapter_or_device_get_features,
   "wgpu_adapter_or_device_get_limits": _wgpu_adapter_or_device_get_limits,
   "wgpu_adapter_request_device_async": _wgpu_adapter_request_device_async,
